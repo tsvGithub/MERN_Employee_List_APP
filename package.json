@@ -1,0 +1,42 @@
+{
+  "name": "mern_employee_list_app",
+  "version": "1.0.0",
+  "description": "MERN ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index",
+    "client": "cd client && npm run start",
+    "server": "nodemon index --ignore client/",
+    "client-install": "cd client && npm install",
+    "server-install": "npm install",
+    "install-all": "concurrently \"npm run client-install\" \"npm run server-install\"",
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsvGithub/MERN_Employee_List_APP.git"
+  },
+  "keywords": [
+    "MERN"
+  ],
+  "author": "tsv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tsvGithub/MERN_Employee_List_APP/issues"
+  },
+  "homepage": "https://github.com/tsvGithub/MERN_Employee_List_APP#readme",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "concurrently": "^5.2.0",
+    "create-react-app": "^3.4.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.12",
+    "nodemon": "^2.0.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.4.1"
+  }
+}
