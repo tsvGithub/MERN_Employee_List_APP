@@ -12,10 +12,20 @@ app.use(bodyParser.json());
 const employee = require("./routes/employee");
 //for express app to use route
 app.use("/employee", employee);
+//-------------------------------
+//Deployment
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
+}
 
+const uri = process.env.mongodb || "mongodb://localhost:27017/mernstack";
+//------------------------------
 //connect to DB with name 'mernstack'
 mongoose.connect(
-  "mongodb://localhost:27017/mernstack",
+  uri,
   {
     useNewUrlParser: true,
     useFindAndModify: false,
