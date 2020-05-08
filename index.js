@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 //body-parser takes the JSON that sent from the
 //client to the server & parses it
 const bodyParser = require("body-parser");
+//Deploy
+const path = require("path");
 
 const app = express();
 //for express to use body-parser
@@ -20,18 +22,15 @@ app.use("/employee", employee);
 //     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 //   });
 // }
+
 // const uri = process.env.mongodb || "mongodb://localhost:27017/mernstack";
-
-const dbAtlas = "mongodb+srv://only4Me:only4MeDB@cluster0-ztzuu.mongodb.net/test?retryWrites=true&w=majority";
-const uri = dbAtlas || "mongodb://localhost:27017/mernstack";
-
 //------------------------------
 //connect to DB with name 'mernstack'
 // mongoose.connect(
-//   "mongodb://localhost:27017/mernstack",
-//   {
+// "mongodb://localhost:27017/mernstack",
 mongoose.connect(
-  uri,
+  //Deploy step 2
+  process.env.mongodb || "mongodb://localhost:27017/mernstack",
   {
     useNewUrlParser: true,
     useFindAndModify: false,
@@ -45,9 +44,15 @@ mongoose.connect(
     } else console.log("successfully connected to the database");
   }
 );
+
+// Step 3
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 //first for deploying; second for developing
-const port = process.env.PORT || 5000;
-// const port = 5000;
-app.listen(port, () => {
-  console.log("app is running on port 5000");
+const PORT = process.env.PORT || 5000; //Deploy Step 1
+// const PORT = 5000;
+app.listen(PORT, () => {
+  console.log(`app is running on port ${PORT}`);
 });
