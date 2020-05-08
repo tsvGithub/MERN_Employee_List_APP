@@ -12,14 +12,16 @@ employeeRouter.get("/", (req, res) => {
   // {} => find all items from collection
   Employee.find({}, (err, response) => {
     if (err)
-      res.status(5000).json({
+      res.status(500).json({
         message: {
           msgBody: "Unable to get employees",
           msgError: true,
         },
       });
     //retriev all items from collection
-    else res.status(200).json(response);
+    else {
+      res.status(200).json({ response });
+    }
   });
 });
 
@@ -30,9 +32,9 @@ employeeRouter.post("/", (req, res) => {
   //with this document will save to the DB
   employee.save((err, document) => {
     if (err)
-      res.status(5000).json({
+      res.status(500).json({
         message: {
-          msgBody: "Unable to add employees",
+          msgBody: "Unable to add employee",
           msgError: true,
         },
       });
@@ -45,7 +47,6 @@ employeeRouter.post("/", (req, res) => {
       });
   });
 });
-
 //delete
 //id=> primary key of item that will be deleted
 employeeRouter.delete("/:id", (req, res) => {
@@ -67,7 +68,6 @@ employeeRouter.delete("/:id", (req, res) => {
       });
   });
 });
-
 //update
 //
 employeeRouter.put("/:id", (req, res) => {
@@ -92,5 +92,6 @@ employeeRouter.put("/:id", (req, res) => {
       });
   });
 });
-//export for index.js can use it
+
 module.exports = employeeRouter;
+//export for index.js can use it

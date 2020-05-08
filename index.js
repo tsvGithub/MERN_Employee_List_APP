@@ -14,21 +14,22 @@ const employee = require("./routes/employee");
 app.use("/employee", employee);
 //-------------------------------
 //Deployment
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/build"));
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+//   });
+// }
 
-const uri = process.env.mongodb || "mongodb://localhost:27017/mernstack";
+// const uri = process.env.mongodb || "mongodb://localhost:27017/mernstack";
 //------------------------------
 //connect to DB with name 'mernstack'
 mongoose.connect(
-  uri,
+  "mongodb://localhost:27017/mernstack",
   {
     useNewUrlParser: true,
     useFindAndModify: false,
+    useUnifiedTopology: true,
   },
   (err) => {
     if (err) {
@@ -39,7 +40,8 @@ mongoose.connect(
   }
 );
 //first for deploying; second for developing
-const port = process.env.PORT || 5000;
+// const port = process.env.PORT || 5000;
+const port = 5000;
 app.listen(port, () => {
-  console.log("app is running");
+  console.log("app is running on port 5000");
 });

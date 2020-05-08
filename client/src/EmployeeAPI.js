@@ -46,7 +46,7 @@ export default {
     //post == create
     //filing in request body
     //headers for sending back JSON
-    return fetch(`/employee/`, {
+    return fetch(`/employee`, {
       method: "post",
       body: JSON.stringify(employee),
       headers: {

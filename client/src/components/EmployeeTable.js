@@ -3,24 +3,24 @@ import EmployeeTableRow from "./EmployeeTableRow";
 
 //functional Component EmployeeTable
 const EmployeeTable = (props) => {
+  //<th> scope используется для программ чтения с экрана. col: указывает, что ячейка заголовка используется для столбца.
+
   return (
     <table className="table">
       <thead>
         <tr>
-          {/*<th> scope используется для программ чтения с экрана. col: указывает, что ячейка заголовка используется для столбца. */}
-          <th scope="col">ID</th>
+          <th scope="col">#</th>
           <th scope="col">First Name</th>
           <th scope="col">Last Name</th>
           <th scope="col">Job Title</th>
           <th scope="col">Salary</th>
         </tr>
       </thead>
+      {/*For EmployeTableRow Component */}
+      {/* map => создавать новые массивы, трансформировать данные в массиве и, соответственно, как результат, заносить их в новыю переменную. */}
       <tbody>
-        {/*For EmployeTableRow Component */}
-        {/* map => создавать новые массивы, трансформировать данные в массиве и, соответственно, как результат, заносить их в новыю переменную. */}
         {props.employees.map((employee) => {
           return (
-            //props:
             <EmployeeTableRow
               key={employee._id}
               employee={employee}

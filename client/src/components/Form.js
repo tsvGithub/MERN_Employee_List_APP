@@ -1,16 +1,13 @@
 import React from "react";
 import Input from "./Input";
-
 //
 const Form = (props) => {
-  //
   return (
     //onSubmit Handler
     <form onSubmit={props.handler}>
       {/*Heading is based on state of From: Edit or Create 
         if it is isEditForm ?  => Editing Employee; if not=> Add Employee*/}
       <h4>{props.isEditForm ? "Editing Employee: " : "Add Employee: "}</h4>
-
       <div className="form-group">
         {/*Call Input Component with props: */}
         {/*handleChange func executes when user types inside Input */}

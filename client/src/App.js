@@ -1,13 +1,13 @@
 import React from "react";
 import EmployeeTable from "./components/EmployeeTable";
-import Form from "./components/Form.js";
+import Form from "./components/Form";
 import Message from "./components/Message";
 import EmployeeAPI from "./EmployeeAPI";
 
 //
 class App extends React.Component {
-  //
   constructor(props) {
+    // debugger;
     //let use .this keyword within constructor
     super(props);
     //set STATE
@@ -15,8 +15,7 @@ class App extends React.Component {
       //empty array for future items
       employees: [],
       //isEditForm has 2 states: Edit & Add
-      isEditForm: false,
-      //employee Object is used in Form to listen
+      isEditForm: false, //employee Object is used in Form to listen
       //for Change & update these properties
       employee: {
         firstName: "",
@@ -45,6 +44,7 @@ class App extends React.Component {
   //& set the STATE of employees (empty) array
   //& trigger a rerender once is called setState
   componentDidMount() {
+    // debugger;
     //use EmployeeAPI.js (all HTTP requests)
     //getEmployees for every item from collection
     //.then get back data from server
@@ -95,12 +95,11 @@ class App extends React.Component {
   showEditForm(employee) {
     //set the State of isEditForm to true
     //& set employee Object to the employee being passed in
-    this.setState({ isEditForm: true, employee: employees });
+    this.setState({ isEditForm: true, employee: employee });
   }
   //------------------------------------------
   //id of item for deleting
   async deleteHandler(id) {
-    //
     const deleteData = await EmployeeAPI.deleteEmployee(id);
     //get message back .message => defined in STATE
     const message = deleteData.message;
@@ -131,8 +130,7 @@ class App extends React.Component {
     } else {
       const data = await EmployeeAPI.getEmployees();
       this.setState({ message, employees: data.response });
-    }
-    //reset the Form to the previous state (false)
+    } //reset the Form to the previous state (false)
     this.setState({ isEditForm: false });
     //reset the Form itself
     this.resetForm();
@@ -156,44 +154,41 @@ class App extends React.Component {
   //EMPLOYEETABLE COMPONENT
   //will execute only if there are items in collection DB
   renderEmployeeTable() {
+    // debugger;
     if (this.state.employees.length > 0) {
       return (
         <EmployeeTable
-          //props:
           employees={this.state.employees}
-          //
           deleteHandler={this.deleteHandler}
-          //
           showEditForm={this.showEditForm}
         />
       );
-    }
-    //if 0 in collection => will return null & not render
+    } //if 0 in collection => will return null & not render
     return null;
   }
   //-----------------------------------
   //FORM Component
   renderForm() {
+    //props:
+    //Form to know if is EDIT or ADD mode
+    //employee Object is used for whenever we type into Form
+    //a listener to listen whenever the user types into Form
+    //& employee will be updated
+    //handler takes onSubmit func
+    //as Form has 2 states (Edit From & Create Form)
+    //handler checks the state of Form (Edit or Create?)
+    //if the State not equal to Edit Form => so
+    //HANDLER is an Add Form, otherwise HANDLER is updateHandler(Edit Form)
+
     return (
       <Form
-        //props:
-        //Form to know if is EDIT or ADD mode
         isEditForm={this.state.isEditForm}
-        //employee Object is used for whenever we type into Form
         employee={this.state.employee}
-        //a listener to listen whenever the user types into Form
-        //& employee will be updated
         handleChange={this.handleChange}
-        //handler takes onSubmit func
-        //as Form has 2 states (Edit From & Create Form)
-        //handler checks the state of Form (Edit or Create?)
-        //if the State not equal to Edit Form => so
-        //HANDLER is an Add Form, otherwise HANDLER is updateHandler(Edit Form)
         handler={!this.state.isEditForm ? this.addHandler : this.updateHandler}
       />
     );
-  }
-  //--------------------------------------------
+  } //--------------------------------------------
   //MESSAGE Component
   renderMessage() {
     //check if the message is empty => returns null => won't render Component
@@ -201,16 +196,16 @@ class App extends React.Component {
     //if message not empty, returns Message Component
     //& pass in message as a prop
     return <Message message={this.state.message} />;
-  }
-  //------------------------------------
+  } //------------------------------------
   //Main Render func for APP Component
   render() {
+    // debugger;
     return (
       <div className="row">
         <div className="col"></div>
         {/* col-10 => middle size column*/}
+        {/*calls Render functions */}
         <div className="col-10">
-          {/*calls Render functions */}
           {this.renderEmployeeTable()}
           {this.renderForm()}
           {this.renderMessage()}

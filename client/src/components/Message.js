@@ -1,5 +1,4 @@
 import React from "react";
-
 //2
 //func renderMessageClassName generates the CSS
 //func takes in props
@@ -11,7 +10,7 @@ const renderMessageClassName = (props) => {
   //oterwise => class success
   if (props.message.msgError) className = className + "alert-danger";
   else className = className + "alert-success";
-  className = className + "text-center";
+  className = className + " text-center";
   return className;
 };
 

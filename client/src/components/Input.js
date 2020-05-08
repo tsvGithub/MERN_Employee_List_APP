@@ -1,9 +1,7 @@
 import React from "react";
-
 //returns Inputs & labels
 const Input = (props) => {
   return (
-    //
     <>
       <label htmlFor={props.name}>{props.labelName}</label>
       <input
