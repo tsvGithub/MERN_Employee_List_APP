@@ -20,12 +20,18 @@ app.use("/employee", employee);
 //     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 //   });
 // }
-
 // const uri = process.env.mongodb || "mongodb://localhost:27017/mernstack";
+
+const dbAtlas = "mongodb+srv://only4Me:only4MeDB@cluster0-ztzuu.mongodb.net/test?retryWrites=true&w=majority";
+const uri = dbAtlas || "mongodb://localhost:27017/mernstack";
+
 //------------------------------
 //connect to DB with name 'mernstack'
+// mongoose.connect(
+//   "mongodb://localhost:27017/mernstack",
+//   {
 mongoose.connect(
-  "mongodb://localhost:27017/mernstack",
+  uri,
   {
     useNewUrlParser: true,
     useFindAndModify: false,
@@ -40,8 +46,8 @@ mongoose.connect(
   }
 );
 //first for deploying; second for developing
-// const port = process.env.PORT || 5000;
-const port = 5000;
+const port = process.env.PORT || 5000;
+// const port = 5000;
 app.listen(port, () => {
   console.log("app is running on port 5000");
 });
