@@ -1,7 +1,8 @@
 import React from "react";
 const EmployeeTableRow = (props) => {
-  //destructing employee Object
-  //Destructuring позволяет быстрее получать (выбирать) определённые значения из массивов и Objects.
+  //destructing {...}employee Object
+  //Destructuring позволяет быстрее получать (выбирать)
+  //определённые значения из массивов и Objects.
   const { firstName, lastName, job, salary, _id } = props.employee;
   return (
     <tr>
@@ -10,7 +11,9 @@ const EmployeeTableRow = (props) => {
       <td>{lastName}</td>
       <td>{job}</td>
       <td>{salary}</td>
-      {/*Edit:handler as onClick event: bind to .this & employee Object which will be added as second argument  */}
+      {/*Edit button: ShowEditForm handler as 
+      onClick event & bind to .this; 
+      + employee Object we want to edit*/}
       <td>
         <div className="btn-group" role="group" aria-label="Basic example">
           <button type="button" onClick={props.showEditForm.bind(this, props.employee)} className="btn btn-secondary">
@@ -21,7 +24,9 @@ const EmployeeTableRow = (props) => {
           </button>
         </div>
       </td>{" "}
-      {/*Delete by id*/}
+      {/*Delete by id button: deleteHandler as onClick
+      event & bind to this
+      + id we want to delete*/}
     </tr>
   );
 };

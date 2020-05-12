@@ -1,5 +1,5 @@
 import React from "react";
-//returns Inputs & labels
+//returns all Inputs & labels for Form
 const Input = (props) => {
   return (
     <>

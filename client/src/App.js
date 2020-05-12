@@ -39,8 +39,8 @@ class App extends React.Component {
     this.showEditForm = this.showEditForm.bind(this);
   }
   //-------------------------------------------
-  //executes once component initially renders
-  //after initially renders the DOM is loaded
+  //executes once when Component initially renders
+  //After initially render the DOM is loaded
   //& set the STATE of employees (empty) array
   //& trigger a rerender once is called setState
   componentDidMount() {
@@ -55,7 +55,7 @@ class App extends React.Component {
     });
   }
   //----------------------------------------
-  //reset Form in employee Object
+  //func resetForm sets employee Object to initial
   resetForm() {
     this.setState({
       employee: {
@@ -88,18 +88,24 @@ class App extends React.Component {
     });
   }
   //--------------------------------
-  //showEditForm 'll be passed down as a prop to Form(.js) Component
+  //UPDATE
+  //showEditForm 'll be passed down as
+  //a props to Form(.js)Component & Form Component
+  //is going to pass in the employee Object that we want to edit.
   //
-  //change isEditForm from State to 'true'& set Form to Edit Form
-  //take in employee Object
+  //showEditForm take in the employee Object
   showEditForm(employee) {
-    //set the State of isEditForm to true
-    //& set employee Object to the employee being passed in
+    //set the State of isEditForm to 'true'
+    //=>sets Form to Edit Form
+    //set employee Object to the employee being
+    //passed in as an argument
     this.setState({ isEditForm: true, employee: employee });
   }
   //------------------------------------------
+  //DELETE
   //id of item for deleting
   async deleteHandler(id) {
+    //from HTTP request EmployeeAPI delete method
     const deleteData = await EmployeeAPI.deleteEmployee(id);
     //get message back .message => defined in STATE
     const message = deleteData.message;
@@ -118,7 +124,9 @@ class App extends React.Component {
     }
   }
   //----------------------------------------
-  //updateHandler passed through Form & 'll be executed as onSubmit func
+  //UPDATE
+  //updateHandler passed through Form
+  //& 'll be executed as onSubmit func
   // takes an event as an argument
   async updateHandler(e) {
     e.preventDefault();
@@ -130,13 +138,16 @@ class App extends React.Component {
     } else {
       const data = await EmployeeAPI.getEmployees();
       this.setState({ message, employees: data.response });
-    } //reset the Form to the previous state (false)
+    }
+    //reset the Form to the previous state (false)
     this.setState({ isEditForm: false });
     //reset the Form itself
     this.resetForm();
   }
   //---------------------------------------------
-  //addHandlre will passed to Form Component & used as an OnSubmit func
+  //CREATE
+  //addHandler will passed to Form Component
+  //& used as an OnSubmit func
   async addHandler(e) {
     e.preventDefault();
     //pass in the employee object to create
@@ -148,10 +159,12 @@ class App extends React.Component {
       const data = await EmployeeAPI.getEmployees();
       this.setState({ message, employees: data.response });
     }
+    //reset the Form itself
     this.resetForm();
   }
   //-------------------------------------------------
-  //EMPLOYEETABLE COMPONENT
+  //============================
+  //EMPLOYEE TABLE COMPONENT
   //will execute only if there are items in collection DB
   renderEmployeeTable() {
     // debugger;
@@ -196,12 +209,17 @@ class App extends React.Component {
     //if message not empty, returns Message Component
     //& pass in message as a prop
     return <Message message={this.state.message} />;
-  } //------------------------------------
+  }
+
+  //------------------------------------
+  //========================================
+  //--------------------------------------
   //Main Render func for APP Component
   render() {
     // debugger;
     return (
       <div className="row">
+        {/*row with 3 columns */}
         <div className="col"></div>
         {/* col-10 => middle size column*/}
         {/*calls Render functions */}

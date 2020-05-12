@@ -4,7 +4,7 @@ import EmployeeTableRow from "./EmployeeTableRow";
 //functional Component EmployeeTable
 const EmployeeTable = (props) => {
   //<th> scope используется для программ чтения с экрана. col: указывает, что ячейка заголовка используется для столбца.
-
+  // debugger;
   return (
     <table className="table">
       <thead>
@@ -17,8 +17,14 @@ const EmployeeTable = (props) => {
         </tr>
       </thead>
       {/*For EmployeTableRow Component */}
-      {/* map => создавать новые массивы, трансформировать данные в массиве и, соответственно, как результат, заносить их в новыю переменную. */}
+      {/* map => создавать новые массивы, 
+      трансформировать данные в массиве и, 
+      соответственно, как результат, заносить их в 
+      новыю переменную. */}
       <tbody>
+        {/*get an employee
+        return EmployeeRow with id, emloyee Object,
+        & Delete handler + Show Edit Form funcs*/}
         {props.employees.map((employee) => {
           return (
             <EmployeeTableRow
