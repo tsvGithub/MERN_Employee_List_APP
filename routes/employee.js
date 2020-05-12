@@ -1,38 +1,46 @@
 const express = require("express");
 const employeeRouter = express.Router();
-//Rmployee Model Schema
+//Employee Model from Schema
 const Employee = require("../model/Employee");
 
 //NB Employee === Employee Model (Schema)
 
-//CreateReadUpdateDelete
-//read
+//CRUD = CreateReadUpdateDelete
+//Read to return all the employee from collection
 employeeRouter.get("/", (req, res) => {
-  //Employee ===Employee Model
+  //Employee === Employee Model
   // {} => find all items from collection
   Employee.find({}, (err, response) => {
     if (err)
+      //500 - something went wrong
       res.status(500).json({
+        //create Message Object
+        //for react Message Component
         message: {
           msgBody: "Unable to get employees",
           msgError: true,
         },
       });
-    //retriev all items from collection
+    //retrieve all items from collection
     else {
       res.status(200).json({ response });
     }
   });
 });
 
-//create
+//Create
+//recieve the data from the client side
 employeeRouter.post("/", (req, res) => {
-  //new instance of the Model will create DOCUMENT
+  //req.body = as we recieve data from client
+  //new instance of the Employee Model will create DOCUMENT
   const employee = new Employee(req.body);
   //with this document will save to the DB
   employee.save((err, document) => {
     if (err)
+      //500 - something went wrong
       res.status(500).json({
+        //create Message Object
+        //for react Message Component
         message: {
           msgBody: "Unable to add employee",
           msgError: true,
@@ -42,18 +50,24 @@ employeeRouter.post("/", (req, res) => {
       res.status(200).json({
         message: {
           msgBody: "Successfully Added Employee",
+          //msgError false since everything went according to plan
           msgError: false,
         },
       });
   });
 });
-//delete
+
+//Delete
 //id=> primary key of item that will be deleted
 employeeRouter.delete("/:id", (req, res) => {
   //Emloyee === Employee Model
+  //req.params.id = gets id from the client
   Employee.findByIdAndDelete(req.params.id, (err) => {
     if (err)
+      //500 - something went wrong
       res.status(500).json({
+        //create Message Object
+        //for react Message Component
         message: {
           msgBody: "Unable to Delete Employee",
           msgError: true,
@@ -63,13 +77,15 @@ employeeRouter.delete("/:id", (req, res) => {
       res.status(200).json({
         message: {
           msgBody: "Successfully Deleted Employee",
+          //msgError false since everything went according to plan
           msgError: false,
         },
       });
   });
 });
-//update
-//
+
+//Update
+//recieve the data from the client side
 employeeRouter.put("/:id", (req, res) => {
   //Employee === Employee Model
   //{ _id: req.params.id } => which item to update
@@ -77,7 +93,10 @@ employeeRouter.put("/:id", (req, res) => {
   //{ runValidators: true } => mongose by default runs validators for all requests, except UPDATE, so need to be set to TRUE
   Employee.findOneAndUpdate({ _id: req.params.id }, req.body, { runValidators: true }, (err, response) => {
     if (err)
+      //500 - something went wrong
       res.status(500).json({
+        //create Message Object
+        //for react Message Component
         message: {
           msgBody: "Unable to Update Employee",
           msgError: true,
@@ -87,6 +106,7 @@ employeeRouter.put("/:id", (req, res) => {
       res.status(200).json({
         message: {
           msgBody: "Successfully Updated Employee",
+          //msgError false since everything went according to plan
           msgError: false,
         },
       });

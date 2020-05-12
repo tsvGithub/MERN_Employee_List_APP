@@ -19,5 +19,5 @@ const EmployeeSchema = new Schema({
     required: true,
   },
 });
-//EmployeeSchema for Schema & Employee for Model (in routes emloyee.js)
+//EmployeeSchema for Schema & "Employee" for Model (in routes emloyee.js)
 module.exports = mongoose.model("Employee", EmployeeSchema);
