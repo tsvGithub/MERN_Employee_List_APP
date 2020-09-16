@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
   //* === all
   //any get request send our react app to the user
   app.get("*", (req, res) => {
-    //3 send our react app
+    //3 find where the static files are located
     //define the path - use path module & join
     //directory name, go inside "client" folder=>inside 'build'
     //folder & there is index.html

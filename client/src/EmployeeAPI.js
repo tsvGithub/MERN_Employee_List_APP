@@ -6,13 +6,14 @@ export default {
   getEmployees: () => {
     //returns a promise & it will be used within Components
     //return fetch& with endpoint we looking for is'employee'
-    //***fetch это аналог ajax, который делает асинхронный запрос
+    //***fetch это аналог ajax, делает асинхронный запрос
     //и возвращает промис, поэтому обращаемся к методу .then и
-    //получаем некоторый respose и далее, чтобы получить тот json,
-    //который прилетает к нам с сервера, мы у объекта respose
+    //получаем respose и, чтобы получить json,
+    //который прилетает с сервера, у объекта respose
     //должны вызвать метод json, который присутствует в методе fetch.
     return (
       //for backend index.js app.use('/employee', employee);
+      //endpoint is /employee
       fetch("/employee")
         //return & parse response; .json returning promise
         .then((res) => res.json())

@@ -15,7 +15,9 @@ class App extends React.Component {
       //empty array for future items
       employees: [],
       //isEditForm has 2 states: Edit & Add
-      isEditForm: false, //employee Object is used in Form to listen
+      //now Edit==false => Add Form
+      isEditForm: false,
+      //employee Object is used in Form to listen
       //for Change & update these properties
       employee: {
         firstName: "",
@@ -89,11 +91,11 @@ class App extends React.Component {
   }
   //--------------------------------
   //UPDATE
-  //showEditForm 'll be passed down as
+  //showEditForm will be passed down as
   //a props to Form(.js)Component & Form Component
   //is going to pass in the employee Object that we want to edit.
   //
-  //showEditForm take in the employee Object
+  //showEditForm takes in the employee Object
   showEditForm(employee) {
     //set the State of isEditForm to 'true'
     //=>sets Form to Edit Form
