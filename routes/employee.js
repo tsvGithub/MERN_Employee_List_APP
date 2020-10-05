@@ -31,8 +31,9 @@ employeeRouter.get("/", (req, res) => {
 //Create
 //recieve the data from the client side
 employeeRouter.post("/", (req, res) => {
-  //req.body = as we recieve data from client
-  //new instance of the Employee Model will create DOCUMENT
+  //we recieve data (req.body) from client
+  //new instance 'employee' will create DOCUMENT
+  //of the Employee Model
   const employee = new Employee(req.body);
   //with this document will save to the DB
   employee.save((err, document) => {

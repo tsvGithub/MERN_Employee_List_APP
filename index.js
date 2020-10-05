@@ -49,6 +49,8 @@ if (process.env.NODE_ENV === "production") {
 //if there isn't "mongodb"that means we're developing locally
 //and need to use "mongodb://localhost:27017/mernstack"
 const uri = process.env.mongodb || "mongodb://localhost:27017/mernstack";
+console.log(uri);
+
 //-----------------------------------------
 mongoose
   //2 connect to local DB with name 'mernstack'
@@ -59,6 +61,7 @@ mongoose
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
   })
   .then(() => {
     console.log("Connected to DB!");
@@ -75,6 +78,7 @@ if (process.env.NODE_ENV === "production") {
 
 //first for deploying; second for developing
 const PORT = process.env.PORT || 5000;
+console.log(PORT);
 // 3 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`App is running on port ${PORT}`);
