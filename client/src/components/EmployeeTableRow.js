@@ -1,6 +1,8 @@
 import React from "react";
 const EmployeeTableRow = (props) => {
-  //destructing {...}employee Object
+  //destructing  an 'employee' object:
+  //{firstName, lastName, job, salary, _id}
+  //
   //Destructuring позволяет быстрее получать (выбирать)
   //определённые значения из массивов и Objects.
   const { firstName, lastName, job, salary, _id } = props.employee;
@@ -11,7 +13,8 @@ const EmployeeTableRow = (props) => {
       <td>{lastName}</td>
       <td>{job}</td>
       <td>{salary}</td>
-      {/*Edit button: ShowEditForm handler as 
+      {/*Edit button: 
+      ShowEditForm handler as 
       onClick event & bind to .this; 
       + employee Object we want to edit*/}
       <td>
@@ -24,7 +27,8 @@ const EmployeeTableRow = (props) => {
           </button>
         </div>
       </td>{" "}
-      {/*Delete by id button: deleteHandler as onClick
+      {/*Delete by id button:
+       deleteHandler as onClick
       event & bind to this
       + id we want to delete*/}
     </tr>

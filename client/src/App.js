@@ -48,10 +48,13 @@ class App extends React.Component {
   componentDidMount() {
     // debugger;
     //use EmployeeAPI.js (all HTTP requests)
-    //getEmployees for every item from collection
-    //.then get back data from server
+    //request:
+    //get all employees from DB collection
+    //respose:
+    //.then get back (response) data from server
+    //and setState of 'employees' with data.response
     EmployeeAPI.getEmployees().then((data) => {
-      console.log(data);
+      // console.log(data);
       //set state of employees
       this.setState({ employees: data.response });
     });
@@ -108,9 +111,18 @@ class App extends React.Component {
   //id of item for deleting
   async deleteHandler(id) {
     //from HTTP request EmployeeAPI delete method
+    //get response from server (routes>employee.js)
+    //save response as 'deleteData'
+    // deleteData is object:
+    // message: {msgBody: "Successfully Deleted Employee", msgError: false}
     const deleteData = await EmployeeAPI.deleteEmployee(id);
+    // console.log(deleteData);
+
     //get message back .message => defined in STATE
     const message = deleteData.message;
+    // console.log(message);
+    //message => {msgBody: "Successfully Deleted Employee", msgError: false}
+
     //depending on the message that we get
     //if msgError true or false (from server)
     if (message.msgError) {

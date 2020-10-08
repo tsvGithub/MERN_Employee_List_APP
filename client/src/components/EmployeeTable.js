@@ -16,15 +16,7 @@ const EmployeeTable = (props) => {
           <th scope="col">Salary</th>
         </tr>
       </thead>
-      {/*For EmployeTableRow Component */}
-      {/* map => создавать новые массивы, 
-      трансформировать данные в массиве и, 
-      соответственно, как результат, заносить их в 
-      новыю переменную. */}
       <tbody>
-        {/*get an employee
-        return EmployeeRow with id, emloyee Object,
-        & Delete handler + Show Edit Form funcs*/}
         {props.employees.map((employee) => {
           return (
             <EmployeeTableRow

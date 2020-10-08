@@ -6,8 +6,8 @@ const Form = (props) => {
     //onSubmit Handler
     <form onSubmit={props.handler}>
       {/*h4 is based on state of Form: Edit or Create? 
-        if it is isEditForm ?  => Editing Employee; 
-        if not=> Add Employee*/}
+        if it is isEditForm true?  => Editing Employee; 
+        if it's false => Add Employee*/}
       <h4>{props.isEditForm ? "Editing Employee: " : "Add Employee: "}</h4>
       <div className="form-group">
         {/*Call Input Component with props: */}
